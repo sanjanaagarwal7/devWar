@@ -2,19 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
+const tracks = {
+        react: { id: 'React', title: 'React Track', icon: '⚛️', color: 'text-blue-400' },
+        spring: { id: 'Spring Boot', title: 'Spring Boot Track', icon: '🍃', color: 'text-green-400' },
+        node: { id: 'Node.js', title: 'Node.js + Express Track', icon: '🟢', color: 'text-yellow-400' },
+        sql: { id: 'SQL', title: 'Database Track', icon: '🗄️', color: 'text-purple-400' }
+};
+
 export default function Learn() {
     const { track } = useParams();
     const navigate = useNavigate();
     const [challenges, setChallenges] = useState([]);
     const [loading, setLoading] = useState(false);
-
-    // Helper mappings
-    const tracks = {
-        react: { id: 'React', title: 'React Track', icon: '⚛️', color: 'text-blue-400' },
-        spring: { id: 'Spring Boot', title: 'Spring Boot Track', icon: '🍃', color: 'text-green-400' },
-        node: { id: 'Node.js', title: 'Node.js + Express Track', icon: '🟢', color: 'text-yellow-400' },
-        sql: { id: 'SQL', title: 'Database Track', icon: '🗄️', color: 'text-purple-400' }
-    };
 
     const currentTrack = track ? tracks[track] : null;
 
@@ -28,7 +27,7 @@ export default function Learn() {
         } else if (track) {
             navigate('/learn'); // redirect invalid tracks
         }
-    }, [track, currentTrack, navigate]);
+    }, [track]);
 
     if (!track) {
         // Show all tracks overview if no track selected

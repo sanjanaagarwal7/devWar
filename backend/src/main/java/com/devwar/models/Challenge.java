@@ -21,6 +21,9 @@ public class Challenge {
     @Column(columnDefinition = "TEXT")
     private String expectedOutput;
 
+    @Column(columnDefinition = "TEXT")
+    private String hint;
+
     private String difficulty; // Easy, Medium, Hard
     private String language; // React, Node.js, Spring Boot, SQL
 
@@ -81,5 +84,13 @@ public class Challenge {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public String getHint() {
+        return hint;
+    }
+
+    public void setHint(String hint) {
+        this.hint = hint;
     }
 }
